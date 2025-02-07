@@ -1,6 +1,6 @@
 # Fraud Detection Challenge: E-commerce & Credit Card Transactions
 
-Welcome to this week's challenge! In this project, you will build an end-to-end fraud detection pipeline using machine learning. You will work with three datasets, perform data analysis and preprocessing, build and explain multiple machine learning models, deploy your solution as a REST API using Flask (and Docker), and create an interactive dashboard with Dash.
+Welcome to this week's challenge! In this project, build an end-to-end fraud detection pipeline using machine learning.  will work with three datasets, perform data analysis and preprocessing, build and explain multiple machine learning models, deploy  solutions as a REST API using Flask (and Docker), and create an interactive dashboard with Dash.
 
 ---
 
