@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-In this task, our goal was to build and train multiple machine learning models for fraud detection using two datasets (credit card transactions and fraud data). We compared different algorithms’ performance and set the stage for subsequent explainability, deployment, and dashboard tasks.
+In this task, the goal was to build and train multiple machine learning models for fraud detection using two datasets (credit card transactions and fraud data). We compared different algorithms’ performance and set the stage for subsequent explainability, deployment, and dashboard tasks.
 
 ## 2. Technologies Used
 
