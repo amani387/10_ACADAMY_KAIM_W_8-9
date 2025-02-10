@@ -1,122 +1,123 @@
 import pandas as pd
-import logging
-import re
-import os
-import emoji
+import gdown
+import ipaddress
+import numpy as np
+from datetime import datetime
+from sklearn.preprocessing import MinMaxScaler
 
-# Ensure logs folder exists
-os.makedirs("../logs", exist_ok=True)
+# ============================================================
+# STEP 1: Download the Fraud Dataset from Google Drive
+# ============================================================
 
-# Configure logging to write to file & display in Jupyter Notebook
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.FileHandler("../logs/data_cleaning.log"),  # Log to file
-        logging.StreamHandler()  # Log to Jupyter Notebook output
-    ]
-)
+# The Google Drive shared file ID
+file_id = "1Z5eXtQHqHksvQ7o8zYGtpfdYyr0VItfK"
+download_url = f"https://drive.google.com/uc?id={file_id}"
+output_file = "Fraud_Data.csv"
 
-def load_csv(file_path):
-    """ Load CSV file into a Pandas DataFrame. """
+# Download the file (if it does not already exist)
+gdown.download(download_url, output_file, quiet=False)
+
+# ============================================================
+# STEP 2: Load the Datasets
+# ============================================================
+
+# Load Fraud_Data, Credit Card Data, and IP-to-Country data
+fraud_df = pd.read_csv("Fraud_Data.csv")
+creditcard_df = pd.read_csv("creditcard1.csv")
+ip_country_df = pd.read_csv("IpAddress_to_Country.csv")
+
+# ============================================================
+# STEP 3: Data Cleaning - IP Address to Country Data
+# ============================================================
+
+# Convert lower_bound_ip_address to integer (it was a float)
+ip_country_df['lower_bound_ip_address'] = ip_country_df['lower_bound_ip_address'].astype(int)
+
+# ============================================================
+# STEP 4: Data Cleaning - Fraud Data
+# ============================================================
+
+# Remove duplicate rows from fraud_df (if any)
+fraud_df.drop_duplicates(inplace=True)
+
+# Check for missing values and print a summary
+print("Missing values in Fraud Data:")
+print(fraud_df.isna().sum())
+
+# Convert timestamp columns to datetime objects.
+# (Assuming columns are named 'signup_time' and 'purchase_time')
+fraud_df['signup_time'] = pd.to_datetime(fraud_df['signup_time'], errors='coerce')
+fraud_df['purchase_time'] = pd.to_datetime(fraud_df['purchase_time'], errors='coerce')
+
+# ============================================================
+# STEP 5: Convert IP Address Strings to Integer
+# ============================================================
+
+# Define a function that converts an IPv4 address (string) to an integer.
+def ip_to_int(ip_str):
     try:
-        df = pd.read_csv(file_path)
-        logging.info(f"✅ CSV file '{file_path}' loaded successfully.")
-        return df
-    except Exception as e:
-        logging.error(f"❌ Error loading CSV file: {e}")
-        raise
+        return int(ipaddress.IPv4Address(ip_str))
+    except Exception:
+        return np.nan
 
-def extract_emojis(text):
-    """ Extract emojis from text, return 'No emoji' if none found. """
-    emojis = ''.join(c for c in text if c in emoji.EMOJI_DATA)
-    return emojis if emojis else "No emoji"
+# Apply the conversion to create a new column 'ip_int'
+fraud_df['ip_int'] = fraud_df['ip_address'].apply(ip_to_int)
 
-def remove_emojis(text):
-    """ Remove emojis from the message text. """
-    return ''.join(c for c in text if c not in emoji.EMOJI_DATA)
+# ============================================================
+# STEP 6: Merge Fraud Data with IP-to-Country Data
+# ============================================================
 
-def extract_youtube_links(text):
-    """ Extract YouTube links from text, return 'No YouTube link' if none found. """
-    youtube_pattern = r"(https?://(?:www\.)?(?:youtube\.com|youtu\.be)/[^\s]+)"
-    links = re.findall(youtube_pattern, text)
-    return ', '.join(links) if links else "No YouTube link"
+# Define a function that maps an IP (as an integer) to a country using the IP ranges
+def map_ip_to_country(ip_int):
+    # Find the row in ip_country_df where ip_int falls between the lower and upper bounds
+    row = ip_country_df[(ip_country_df['lower_bound_ip_address'] <= ip_int) & 
+                        (ip_country_df['upper_bound_ip_address'] >= ip_int)]
+    if not row.empty:
+        return row.iloc[0]['country']
+    else:
+        return np.nan
 
-def remove_youtube_links(text):
-    """ Remove YouTube links from the message text. """
-    youtube_pattern = r"https?://(?:www\.)?(?:youtube\.com|youtu\.be)/[^\s]+"
-    return re.sub(youtube_pattern, '', text).strip()
+# Create a new column 'country' in fraud_df by applying the mapping function
+fraud_df['country'] = fraud_df['ip_int'].apply(map_ip_to_country)
 
-def clean_text(text):
-    """ Standardize text by removing newline characters and unnecessary spaces. """
-    if pd.isna(text):
-        return "No Message"
-    return re.sub(r'\n+', ' ', text).strip()
+# ============================================================
+# STEP 7: Feature Engineering - Time-Based Features
+# ============================================================
 
-def clean_dataframe(df):
-    """ Perform all cleaning and standardization steps while avoiding SettingWithCopyWarning. """
-    try:
-        df = df.drop_duplicates(subset=["ID"]).copy()  # Ensure a new copy
-        logging.info("✅ Duplicates removed from dataset.")
+# Extract the hour of day and day of week from the purchase_time column
+fraud_df['purchase_hour'] = fraud_df['purchase_time'].dt.hour
+fraud_df['purchase_dayofweek'] = fraud_df['purchase_time'].dt.dayofweek
 
-        # ✅ Convert Date to datetime format, replacing NaT with None
-        df.loc[:, 'Date'] = pd.to_datetime(df['Date'], errors='coerce')
-        df.loc[:, 'Date'] = df['Date'].where(df['Date'].notna(), None)
-        logging.info("✅ Date column formatted to datetime.")
+# ============================================================
+# STEP 8: Normalize a Key Feature (purchase_value)
+# ============================================================
 
-        # ✅ Convert 'ID' to integer for PostgreSQL BIGINT compatibility
-        df.loc[:, 'ID'] = pd.to_numeric(df['ID'], errors="coerce").fillna(0).astype(int)
+# Using MinMaxScaler to normalize the 'purchase_value' column (assumed to be the purchase amount)
+scaler = MinMaxScaler()
+# Reshape is required because scaler expects a 2D array
+fraud_df['purchase_value_scaled'] = scaler.fit_transform(fraud_df[['purchase_value']])
 
-        # ✅ Fill missing values
-        df.loc[:, 'Message'] = df['Message'].fillna("No Message")
-        df.loc[:, 'Media Path'] = df['Media Path'].fillna("No Media")
-        logging.info("✅ Missing values filled.")
+# ============================================================
+# STEP 9: Exploratory Data Analysis (EDA) - Quick Look
+# ============================================================
 
-        # ✅ Standardize text columns
-        df.loc[:, 'Channel Title'] = df['Channel Title'].str.strip()
-        df.loc[:, 'Channel Username'] = df['Channel Username'].str.strip()
-        df.loc[:, 'Message'] = df['Message'].apply(clean_text)
-        df.loc[:, 'Media Path'] = df['Media Path'].str.strip()
-        logging.info("✅ Text columns standardized.")
+# Print a summary of the fraud dataset to inspect data types and new columns
+print("\nFraud Data Info:")
+print(fraud_df.info())
 
-        # ✅ Extract emojis and store them in a new column
-        df.loc[:, 'emoji_used'] = df['Message'].apply(extract_emojis)
-        logging.info("✅ Emojis extracted and stored in 'emoji_used' column.")
-        
-        # ✅ Remove emojis from message text
-        df.loc[:, 'Message'] = df['Message'].apply(remove_emojis)
+# Display the first few rows to verify the changes
+print("\nFraud Data Sample:")
+print(fraud_df.head())
 
-        # ✅ Extract YouTube links into a separate column
-        df.loc[:, 'youtube_links'] = df['Message'].apply(extract_youtube_links)
-        logging.info("✅ YouTube links extracted and stored in 'youtube_links' column.")
+# Optionally, you can also print summary statistics
+print("\nFraud Data Summary Statistics:")
+print(fraud_df.describe())
 
-        # ✅ Remove YouTube links from message text
-        df.loc[:, 'Message'] = df['Message'].apply(remove_youtube_links)
+# ============================================================
+# STEP 10: (Optional) Quick EDA on Credit Card Data
+# ============================================================
 
-        # ✅ Rename columns to match PostgreSQL schema
-        df = df.rename(columns={
-            "Channel Title": "channel_title",
-            "Channel Username": "channel_username",
-            "ID": "message_id",
-            "Message": "message",
-            "Date": "message_date",
-            "Media Path": "media_path",
-            "emoji_used": "emoji_used",
-            "youtube_links": "youtube_links"
-        })
-
-        logging.info("✅ Data cleaning completed successfully.")
-        return df
-    except Exception as e:
-        logging.error(f"❌ Data cleaning error: {e}")
-        raise
-
-def save_cleaned_data(df, output_path):
-    """ Save cleaned data to a new CSV file. """
-    try:
-        df.to_csv(output_path, index=False)
-        logging.info(f"✅ Cleaned data saved successfully to '{output_path}'.")
-        print(f"✅ Cleaned data saved successfully to '{output_path}'.")
-    except Exception as e:
-        logging.error(f"❌ Error saving cleaned data: {e}")
-        raise
+print("\nCredit Card Data Info:")
+print(creditcard_df.info())
+print("\nCredit Card Data Sample:")
+print(creditcard_df.head())
