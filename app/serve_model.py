@@ -23,7 +23,24 @@ with open(model_path, 'rb') as model_file:
 with open(scaler_path, 'rb') as scaler_file:
     scaler = pickle.load(scaler_file)
 
-# Step 5: Define API route to predict fraud
+# ✅ Step 5: Add API Route to Serve Fraud Data for Dashboard
+@app.route('/get_fraud_data', methods=['GET'])
+def get_fraud_data():
+    try:
+        # Load fraud dataset (Ensure you have a CSV file with fraud data)
+        df = pd.read_csv(r"C:\Users\kingsta\Desktop\week-8&9\10_ACADAMY_KAIM_W8\data\cleaned_fraud_data.csv")  # Change file name if needed
+
+        # Debug: Print available columns
+        print("✅ Serving Fraud Data - Columns:", df.columns.tolist())
+
+        # Convert DataFrame to JSON
+        return df.to_json(orient="records")
+    
+    except Exception as e:
+        logging.error(f"Error fetching fraud data: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+# Step 6: Define API route to predict fraud
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
@@ -49,6 +66,6 @@ def predict():
         logging.error(f"Error processing request: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
-# Step 6: Run the Flask app
+# Step 7: Run the Flask app
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

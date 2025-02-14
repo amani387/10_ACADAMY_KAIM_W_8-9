@@ -2,7 +2,7 @@
 FROM python:3.8-slim
 
 # Set the working directory
-WORKDIR /
+WORKDIR /app
 
 # Copy the current directory contents into the container
 COPY . .
@@ -19,4 +19,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 
 # Run the Flask application
-CMD ["python", "serve_model.py"]
+CMD ["python", "/serve_model.py"]

@@ -1,0 +1,104 @@
+2025-02-13 15:28:15,380 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.38:5000
+2025-02-13 15:28:15,381 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-13 15:28:15,385 - INFO -  * Restarting with stat
+2025-02-13 15:28:20,956 - WARNING -  * Debugger is active!
+2025-02-13 15:28:21,021 - INFO -  * Debugger PIN: 138-373-746
+2025-02-13 15:28:59,723 - INFO - 127.0.0.1 - - [13/Feb/2025 15:28:59] "[33mGET / HTTP/1.1[0m" 404 -
+2025-02-13 15:29:00,041 - INFO - 127.0.0.1 - - [13/Feb/2025 15:29:00] "[33mGET /logo.png HTTP/1.1[0m" 404 -
+2025-02-13 15:29:00,073 - INFO - 127.0.0.1 - - [13/Feb/2025 15:29:00] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-13 15:29:11,317 - INFO - 127.0.0.1 - - [13/Feb/2025 15:29:11] "[31m[1mGET /predict HTTP/1.1[0m" 405 -
+2025-02-13 15:29:11,522 - INFO - 127.0.0.1 - - [13/Feb/2025 15:29:11] "[33mGET /logo.png HTTP/1.1[0m" 404 -
+2025-02-13 15:29:21,261 - INFO - 192.168.0.38 - - [13/Feb/2025 15:29:21] "[33mGET / HTTP/1.1[0m" 404 -
+2025-02-13 15:29:21,524 - INFO - 192.168.0.38 - - [13/Feb/2025 15:29:21] "[33mGET /logo.png HTTP/1.1[0m" 404 -
+2025-02-13 15:29:21,581 - INFO - 192.168.0.38 - - [13/Feb/2025 15:29:21] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-13 15:30:24,261 - INFO - 192.168.0.38 - - [13/Feb/2025 15:30:24] "[31m[1mGET /predict HTTP/1.1[0m" 405 -
+2025-02-13 15:30:24,332 - INFO - 192.168.0.38 - - [13/Feb/2025 15:30:24] "[33mGET /logo.png HTTP/1.1[0m" 404 -
+2025-02-13 15:57:01,511 - INFO - Prediction: 0.0, Input Data: {'Time': 1000, 'V1': -1.2, 'V2': 0.3, 'V3': 1.4, 'V4': -0.2, 'V5': 0.5, 'V6': -1.1, 'V7': 0.2, 'V8': -0.3, 'V9': 0.9, 'V10': -0.5, 'V11': 1.2, 'V12': -0.4, 'V13': 0.8, 'V14': -0.1, 'V15': 0.3, 'V16': -1.2, 'V17': 0.6, 'V18': -0.9, 'V19': 1.1, 'V20': -0.7, 'V21': 0.4, 'V22': -1.0, 'V23': 0.2, 'V24': -0.3, 'V25': 1.5, 'V26': -0.8, 'V27': 0.7, 'V28': -0.9, 'Amount': 200}
+2025-02-13 15:57:01,515 - INFO - 192.168.0.38 - - [13/Feb/2025 15:57:01] "POST /predict HTTP/1.1" 200 -
+2025-02-13 15:58:18,617 - INFO -  * Detected change in 'C:\\Users\\kingsta\\Desktop\\week-8&9\\10_ACADAMY_KAIM_W8\\app\\dashboard.py', reloading
+2025-02-13 15:58:19,775 - INFO -  * Restarting with stat
+2025-02-13 15:58:25,501 - WARNING -  * Debugger is active!
+2025-02-13 15:58:25,516 - INFO -  * Debugger PIN: 138-373-746
+2025-02-13 16:00:37,026 - INFO - 127.0.0.1 - - [13/Feb/2025 16:00:37] "[33mGET /get_fraud_data HTTP/1.1[0m" 404 -
+2025-02-13 16:01:37,227 - INFO - 127.0.0.1 - - [13/Feb/2025 16:01:37] "[33mGET /get_fraud_data HTTP/1.1[0m" 404 -
+2025-02-13 16:02:37,228 - INFO - 127.0.0.1 - - [13/Feb/2025 16:02:37] "[33mGET /get_fraud_data HTTP/1.1[0m" 404 -
+2025-02-13 16:03:37,211 - INFO - 127.0.0.1 - - [13/Feb/2025 16:03:37] "[33mGET /get_fraud_data HTTP/1.1[0m" 404 -
+2025-02-13 16:04:09,828 - INFO -  * Detected change in 'C:\\Users\\kingsta\\Desktop\\week-8&9\\10_ACADAMY_KAIM_W8\\app\\dashboard.py', reloading
+2025-02-13 16:04:10,518 - INFO -  * Restarting with stat
+2025-02-13 16:04:16,572 - WARNING -  * Debugger is active!
+2025-02-13 16:04:16,587 - INFO -  * Debugger PIN: 138-373-746
+2025-02-13 16:04:23,660 - INFO - 127.0.0.1 - - [13/Feb/2025 16:04:23] "[33mGET /get_fraud_data HTTP/1.1[0m" 404 -
+2025-02-13 16:05:23,630 - INFO - 127.0.0.1 - - [13/Feb/2025 16:05:23] "[33mGET /get_fraud_data HTTP/1.1[0m" 404 -
+2025-02-13 16:06:24,203 - INFO - 127.0.0.1 - - [13/Feb/2025 16:06:24] "[33mGET /get_fraud_data HTTP/1.1[0m" 404 -
+2025-02-13 16:07:24,203 - INFO - 127.0.0.1 - - [13/Feb/2025 16:07:24] "[33mGET /get_fraud_data HTTP/1.1[0m" 404 -
+2025-02-13 16:08:23,634 - INFO - 127.0.0.1 - - [13/Feb/2025 16:08:23] "[33mGET /get_fraud_data HTTP/1.1[0m" 404 -
+2025-02-13 16:09:25,197 - INFO - 127.0.0.1 - - [13/Feb/2025 16:09:25] "[33mGET /get_fraud_data HTTP/1.1[0m" 404 -
+2025-02-13 16:09:27,897 - INFO -  * Detected change in 'C:\\Users\\kingsta\\Desktop\\week-8&9\\10_ACADAMY_KAIM_W8\\app\\serve_model.py', reloading
+2025-02-13 16:09:28,494 - INFO -  * Restarting with stat
+2025-02-13 16:09:33,339 - WARNING -  * Debugger is active!
+2025-02-13 16:09:33,353 - INFO -  * Debugger PIN: 138-373-746
+2025-02-13 16:09:33,458 - ERROR - Error fetching fraud data: [Errno 2] No such file or directory: 'fraud_data.csv'
+2025-02-13 16:09:33,459 - INFO - 127.0.0.1 - - [13/Feb/2025 16:09:33] "[35m[1mGET /get_fraud_data HTTP/1.1[0m" 500 -
+2025-02-13 16:09:53,912 - INFO -  * Detected change in 'C:\\Users\\kingsta\\Desktop\\week-8&9\\10_ACADAMY_KAIM_W8\\app\\serve_model.py', reloading
+2025-02-13 16:09:54,507 - INFO -  * Restarting with stat
+2025-02-13 16:10:13,205 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.38:5000
+2025-02-13 16:10:13,205 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-13 16:10:13,207 - INFO -  * Restarting with stat
+2025-02-13 16:10:18,294 - WARNING -  * Debugger is active!
+2025-02-13 16:10:18,315 - INFO -  * Debugger PIN: 138-373-746
+2025-02-13 16:11:09,492 - INFO - 127.0.0.1 - - [13/Feb/2025 16:11:09] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:12:10,299 - INFO - 127.0.0.1 - - [13/Feb/2025 16:12:10] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:12:26,253 - INFO - 127.0.0.1 - - [13/Feb/2025 16:12:26] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:13:10,016 - INFO - 127.0.0.1 - - [13/Feb/2025 16:13:10] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:14:10,480 - INFO - 127.0.0.1 - - [13/Feb/2025 16:14:10] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:15:10,723 - INFO - 127.0.0.1 - - [13/Feb/2025 16:15:10] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:16:10,973 - INFO - 127.0.0.1 - - [13/Feb/2025 16:16:10] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:17:09,785 - INFO - 127.0.0.1 - - [13/Feb/2025 16:17:09] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:17:45,527 - INFO - 127.0.0.1 - - [13/Feb/2025 16:17:45] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:18:10,267 - INFO - 127.0.0.1 - - [13/Feb/2025 16:18:10] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:18:48,127 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.38:5000
+2025-02-13 16:18:48,127 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-13 16:18:48,129 - INFO -  * Restarting with stat
+2025-02-13 16:18:52,665 - WARNING -  * Debugger is active!
+2025-02-13 16:18:52,687 - INFO -  * Debugger PIN: 138-373-746
+2025-02-13 16:18:59,550 - INFO - 127.0.0.1 - - [13/Feb/2025 16:18:59] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:19:19,755 - INFO - 127.0.0.1 - - [13/Feb/2025 16:19:19] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:20:19,594 - INFO - 127.0.0.1 - - [13/Feb/2025 16:20:19] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:21:19,937 - INFO - 127.0.0.1 - - [13/Feb/2025 16:21:19] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:22:19,651 - INFO - 127.0.0.1 - - [13/Feb/2025 16:22:19] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:23:20,746 - INFO - 127.0.0.1 - - [13/Feb/2025 16:23:20] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:24:20,607 - INFO - 127.0.0.1 - - [13/Feb/2025 16:24:20] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:25:09,525 - INFO -  * Detected change in 'C:\\Users\\kingsta\\Desktop\\week-8&9\\10_ACADAMY_KAIM_W8\\app\\dashboard.py', reloading
+2025-02-13 16:25:10,153 - INFO -  * Restarting with stat
+2025-02-13 16:25:15,087 - WARNING -  * Debugger is active!
+2025-02-13 16:25:15,115 - INFO -  * Debugger PIN: 138-373-746
+2025-02-13 16:25:24,036 - INFO - 127.0.0.1 - - [13/Feb/2025 16:25:24] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:25:25,496 - INFO - 127.0.0.1 - - [13/Feb/2025 16:25:25] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:25:29,353 - INFO - 127.0.0.1 - - [13/Feb/2025 16:25:29] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:25:49,918 - INFO - 127.0.0.1 - - [13/Feb/2025 16:25:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:26:49,319 - INFO - 127.0.0.1 - - [13/Feb/2025 16:26:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:27:49,178 - INFO - 127.0.0.1 - - [13/Feb/2025 16:27:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:28:49,236 - INFO - 127.0.0.1 - - [13/Feb/2025 16:28:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:29:49,351 - INFO - 127.0.0.1 - - [13/Feb/2025 16:29:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:30:49,285 - INFO - 127.0.0.1 - - [13/Feb/2025 16:30:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:31:50,550 - INFO - 127.0.0.1 - - [13/Feb/2025 16:31:50] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:32:49,442 - INFO - 127.0.0.1 - - [13/Feb/2025 16:32:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:33:49,207 - INFO - 127.0.0.1 - - [13/Feb/2025 16:33:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:34:49,472 - INFO - 127.0.0.1 - - [13/Feb/2025 16:34:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:35:49,419 - INFO - 127.0.0.1 - - [13/Feb/2025 16:35:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:36:49,599 - INFO - 127.0.0.1 - - [13/Feb/2025 16:36:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:37:49,680 - INFO - 127.0.0.1 - - [13/Feb/2025 16:37:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:38:49,652 - INFO - 127.0.0.1 - - [13/Feb/2025 16:38:49] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:39:50,959 - INFO - 127.0.0.1 - - [13/Feb/2025 16:39:50] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:40:51,234 - INFO - 127.0.0.1 - - [13/Feb/2025 16:40:51] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:41:50,551 - INFO - 127.0.0.1 - - [13/Feb/2025 16:41:50] "GET /get_fraud_data HTTP/1.1" 200 -
+2025-02-13 16:42:49,575 - INFO - 127.0.0.1 - - [13/Feb/2025 16:42:49] "GET /get_fraud_data HTTP/1.1" 200 -
