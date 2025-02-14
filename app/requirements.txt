@@ -1,5 +1,5 @@
 # Flask for building the API
-Flask==2.0.3
+
 
 # Dash for dashboard development (Dash includes dash-core-components, dash-html-components, etc.)
 dash==2.0.0
@@ -24,3 +24,9 @@ lime==0.2.0.1
 
 # Experiment tracking and MLOps
 mlflow==1.29.0
+flask
+numpy
+pandas
+scikit-learn
+shap
+gunicorn
